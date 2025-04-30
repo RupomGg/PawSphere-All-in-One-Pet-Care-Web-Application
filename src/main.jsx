@@ -40,9 +40,9 @@ const router = createBrowserRouter([
       { path: "/", element: <Home></Home>},
       { path: "/register", element: <Register></Register> },
       { path: "/login", element: <Login></Login> },
-      { path: "/projectlist", element: <Projectlist></Projectlist>, 
+      // { path: "/projectlist", element: <Projectlist></Projectlist>, 
         // loader:() => fetch('http://localhost:3000/create-project')
-      },
+      // },
       { path: "/admin-home", element: <AdminHome></AdminHome> },
       { path: "/user-home", element: <UserHome></UserHome> },
       { path: "/userprofile", element: <UserProfile></UserProfile> },
