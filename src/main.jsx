@@ -65,37 +65,37 @@ const router = createBrowserRouter([
 
 
 
-      { path: "/project", element: <Project></Project> },
-      { path: "/view/:id", element: <View></View> ,
-        loader: async ({params}) => {
-          try {
-            const response = await fetch(`http://localhost:3000/create-project/${params.id}`);
-            if (!response.ok) {
-              throw new Error('Failed to fetch project data');
-            }
-            return response.json();
-          } catch (error) {
-            console.error(error);
-            return { error: 'Failed to load project data' };
-          }
-        }
+      // { path: "/project", element: <Project></Project> },
+      // { path: "/view/:id", element: <View></View> ,
+      //   loader: async ({params}) => {
+      //     try {
+      //       const response = await fetch(`http://localhost:3000/create-project/${params.id}`);
+      //       if (!response.ok) {
+      //         throw new Error('Failed to fetch project data');
+      //       }
+      //       return response.json();
+      //     } catch (error) {
+      //       console.error(error);
+      //       return { error: 'Failed to load project data' };
+      //     }
+      //   }
 
-      },
-      { path: "/entroprojectview/:id", element: <ViewEntroProject></ViewEntroProject> ,
-        loader: async ({params}) => {
-          try {
-            const response = await fetch(`http://localhost:3000/edit-project/${params.id}`);
-            if (!response.ok) {
-              throw new Error('Failed to fetch project data');
-            }
-            return response.json();
-          } catch (error) {
-            console.error(error);
-            return { error: 'Failed to load project data' };
-          }
-        }
+      // },
+      // { path: "/entroprojectview/:id", element: <ViewEntroProject></ViewEntroProject> ,
+      //   loader: async ({params}) => {
+      //     try {
+      //       const response = await fetch(`http://localhost:3000/edit-project/${params.id}`);
+      //       if (!response.ok) {
+      //         throw new Error('Failed to fetch project data');
+      //       }
+      //       return response.json();
+      //     } catch (error) {
+      //       console.error(error);
+      //       return { error: 'Failed to load project data' };
+      //     }
+      //   }
 
-      },
+      // },
     ],
   },
   
