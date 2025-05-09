@@ -30,6 +30,8 @@ import AdminHome from './component/Dashboard/AdminHome.jsx';
 import UserProfile from './component/Profile/UserProfile.jsx';
 import EditPetProfile from './component/Edit Pet Profile/editPetProfile.jsx';
 import Notification from './component/Notification/Notification.jsx';
+import Adoption from './component/Adoption/Adoption.jsx';
+import LostOrfound from './component/LostOrFound/LostOrfound.jsx';
 
 
 const router = createBrowserRouter([
@@ -56,11 +58,15 @@ const router = createBrowserRouter([
         element: <EditPetProfile />
 
      },
+    //  alvee
       {
         path: '/notification',
         element: <Notification></Notification>
 
      },
+     { path: "/adoption", element: <Adoption></Adoption>},
+      { path: "/lostorfound", element: <LostOrfound></LostOrfound>},
+      // alvee end
       
 
 

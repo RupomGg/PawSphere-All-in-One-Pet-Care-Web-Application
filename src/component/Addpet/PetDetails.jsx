@@ -152,9 +152,9 @@ const PetDetails = () => {
                                 <div className="flex flex-col gap-6 md:flex-row">
                                     <div className="w-full md:w-1/3">
                                         <div className="relative group">
-                                            <img 
-                                                src={pet.image} 
-                                                alt={pet.name} 
+                                            <img
+                                                src={pet.image}
+                                                alt={pet.name}
                                                 className="object-cover w-full transition-transform duration-300 transform shadow-md h-80 rounded-xl group-hover:scale-105"
                                             />
                                             <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/50 to-transparent group-hover:opacity-100 rounded-xl"></div>
@@ -313,7 +313,7 @@ const PetDetails = () => {
                                 </svg>
                                 Latest Health Record
                             </h2>
-                            
+
                             {latestRecord ? (
                                 <div className="p-4 border border-green-100 rounded-lg bg-green-50">
                                     <div className="grid grid-cols-2 gap-4">
@@ -405,6 +405,34 @@ const PetDetails = () => {
                                 </svg>
                                 Request Adoption
                             </button>
+
+
+                            {/* lost */}
+
+                            <button
+                                onClick={async () => {
+                                    try {
+                                        const res = await fetch(`http://localhost:3000/report-lost/${id}`, {
+                                            method: 'POST',
+                                            credentials: 'include',
+                                        });
+                                        const data = await res.json();
+                                        if (res.ok) {
+                                            alert(data.message);
+                                            navigate('/lostorfound'); // Redirect to lost pets page
+                                        } else {
+                                            alert(data.message || 'Failed to report pet as lost');
+                                        }
+                                    } catch (err) {
+                                        console.error('Error reporting lost pet:', err);
+                                        alert('Failed to report pet as lost');
+                                    }
+                                }}
+                                className="w-full px-4 py-2 text-sm font-semibold text-center text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-700 hover:scale-105"
+                            >
+                                Lost
+                            </button>
+
 
                             <button
                                 onClick={async () => {
