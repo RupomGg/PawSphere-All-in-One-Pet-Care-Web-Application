@@ -1,382 +1,491 @@
 /* General Layout */
 .pet-details-container {
-    color: #ecf0f1;
-    padding: 20px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: #1f2937;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
     min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     width: 100%;
     max-width: none;
     margin: 0;
-    position: relative;
-    
-    
-    }
+    background-color: #f9fafb;
+}
 
 
-/* Walking Data Section */
-.walking-data-container {
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px; 
-    position: absolute;
-    top: 20px; 
-    right: 20px;
-    z-index: 10; 
-    text-align: justify; 
+/* Left Column */
+.left-column {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
-    color: #1f283b;
-    background-color: rgba(255, 255, 255, 0.9);
-    margin-top: 20px; 
+    gap: 24px;
 }
 
-/* Edit Walking Data Button */
-.edit-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px 15px; 
-    color: #fff; 
-    font-size: 1rem; 
-    font-weight: bold;
-    background-color: #87CEEB; 
-    border-radius: 5px; 
-    transition: background-color 0.3s ease;
-}
 
-.edit-button:hover {
-    background-color: #66B2FF;
-}
-
-/* Walking Data Popup (floating modal with glass effect) */
-.walking-data-popup {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20; 
-    backdrop-filter: blur(10px); 
-}
-
-/* Popup content styling (with transparent glass effect) */
-.popup-content {
-    background-color: rgba(255, 255, 255, 0.2); 
-    padding: 30px;
-    border-radius: 15px; 
-    width: 400px;
-    max-width: 90%; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Right Column */
+.right-column {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    color: #fff;
+    gap: 24px;
+    position: sticky;
+    top: 24px;
+    height: fit-content;
 }
 
-/* Input Fields with Glass Effect */
-.input-field {
-    padding: 12px;
-    font-size: 1rem;
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-}
 
-.input-field:focus {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.5);
-    outline: none;
-}
-
-.input-field::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Buttons with Glass Effect */
-.save-button,
-.cancel-button,
-.reset-button {
-    padding: 12px;
-    font-size: 1rem;
-    width: 100%;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.2); /* Soft background */
-    backdrop-filter: blur(5px); /* Slight blur effect */
-    color: #fff;
-    transition: background-color 0.3s ease;
-}
-
-/* Button hover effects */
-.save-button:hover {
-    background-color: rgba(46, 204, 113, 0.3); /* Slightly darker green */
-}
-
-.cancel-button:hover {
-    background-color: rgba(231, 76, 60, 0.3); /* Slightly darker red */
-}
-
-.reset-button:hover {
-    background-color: rgba(243, 156, 18, 0.3); /* Slightly darker yellow */
-}
-
-/* Close button (optional) */
-.close-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.close-btn:hover {
-    transform: scale(1.2);
-}
-
-/* Image and details section */
+/* Image and Details Section */
 .image-and-details {
     display: flex;
     width: 100%;
-    justify-content: space-between;
-    margin-bottom: 30px;
+    gap: 32px;
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+
 .image-container {
-    width: 150px;
-    height: 150px;
-    margin-right: 20px;
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
 }
+
 
 .pet-image {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     object-fit: cover;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+
 .details-container {
-    flex: 0 0 50%;
-    text-align: left;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-right: 580px;
 }
+
 
 .pet-name {
     font-size: 2rem;
-    font-weight: bold;
-    color: rgb(88, 28, 135); /* Soft greenish color for the name */
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
 }
+
 
 .pet-breed,
 .pet-dob,
 .pet-age {
-    font-size: 1.1rem;
-    font-weight:bold;
-    margin: 5px 0;
-    color: #1f283b; /* Light blue color */
+    font-size: 1rem;
+    color: #4b5563;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
+
+/* Description Section */
 .pet-description {
     width: 100%;
-    text-align: justify;
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: #1f283b; /* Light green color */
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Add margin to drop down the content below */
-.side-by-side,
-.walking-data-wrapper {
-    margin-top: 80px; /* Push content down by 4 steps */
+
+.pet-description h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
 }
+
+
+.pet-description p {
+    color: #4b5563;
+    line-height: 1.6;
+}
+
 
 /* Side-by-side sections */
 .side-by-side {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
     width: 100%;
-    margin-top: 20px;
+    margin-bottom: 0;
 }
 
+
 .scrollable-section {
-    max-height: 350px;
-    overflow-y: scroll; /* Allows scrolling */
-    width: 48%; /* Adjusted for side-by-side */
-    margin-right: 20px;
-    padding-right: 10px; /* Prevents content from being cut off */
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    max-height: 400px;
+    overflow-y: auto;
 }
+
 
 .column-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: rgb(88, 28, 135); /* Greenish color for sticky titles */
-    position: sticky;
-    top: 0;
-    background-color:rgba(255, 255, 255, 0.9); /* Dark background for title */
-    padding: 10px 0;
-    z-index: 1; /* Ensures the title stays on top */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f3f4f6;
 }
 
-.scrollable-section::-webkit-scrollbar {
-    width: 0px; /* Hides the scrollbar */
-    background: transparent; /* Makes the scrollbar track invisible */
-}
-
-.scrollable-section {
-    scrollbar-width: thin; /* Makes the scrollbar smaller */
-    scrollbar-color: transparent transparent; /* Hides the scrollbar */
-}
-
-.scrollable-section:last-child {
-    margin-right: 0;
-}
 
 .vaccination-card,
 .appointment-card {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly lighter dark color for cards */
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
 }
+
+
+.vaccination-card:hover,
+.appointment-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-color: #d1d5db;
+}
+
 
 .vaccination-card p,
 .appointment-card p {
-    font-size: 1rem;
-    margin: 5px 0;
-    text-align: left;
-    color: #1f283b;
+    margin: 8px 0;
+    color: #4b5563;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
 }
 
-/* Buttons container */
+
+.vaccination-card p strong,
+.appointment-card p strong {
+    color: #111827;
+    font-weight: 600;
+    min-width: 140px;
+}
+
+
+/* Walking Data Section */
+.walking-data-container {
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.walking-data-container h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.stat-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Medical Data Section */
+.medical-data-container {
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.medical-records-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+
+.medical-record-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e5e7eb;
+}
+
+
+/* Buttons */
 .action-buttons-container {
     display: flex;
-    justify-content: center;
-    gap: 20px; /* Adds space between the buttons */
-    flex-wrap: wrap; /* Ensures buttons wrap to the next line if space is tight */
-    margin-top: 40px; /* Added margin-top to push buttons 2 steps down */
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
+    margin-top: 0;
 }
 
-/* Button styles */
-.edit-profile-button,
-.remove-pet-button {
-    width: auto; /* Width adjusted for medium size */
-    padding: 12px 25px; /* Increased padding for a larger button */
-    font-size: 1.1rem; /* Slightly larger font size */
-    min-width: 160px; /* Ensures the button has a reasonable minimum width */
+
+.action-buttons-container button {
+    padding: 10px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
 }
 
-/* Floating Action Button (FAB) */
-.fab-container {
-    position: absolute;
-    top: 100px;
-    right: 25px;
+
+.action-buttons-container button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.fab { 
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #1abc9c; 
-    border-radius: 50%; 
+
+.health-card-button {
+    background-color: #10b981 !important;
+    color: white !important;
 }
 
-.fab:hover {
-    transform: scale(1.1); /* Slight zoom on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+
+.health-card-button:hover {
+    background-color: #059669 !important;
 }
 
-/* Edit Walking Data Icon */
-.edit-icon-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    transition: transform 0.3s ease;
-    margin-left: 10px; /* Align icon with distance and hours text */
+
+/* Popups */
+.walking-data-popup {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 50;
+    backdrop-filter: blur(4px);
 }
 
-.edit-icon-btn:hover {
-    transform: scale(1.1); /* Slightly enlarge on hover */
+
+.popup-content {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* Media Queries for responsiveness */
+
+.popup-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 24px;
+}
+
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+
+.input-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 8px;
+}
+
+
+.input-field {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #111827;
+    transition: all 0.2s ease;
+}
+
+
+.input-field:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+
+/* Health Card Styles */
+.health-card-popup {
+    max-width: 400px;
+}
+
+
+.today-medical-record {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+
+.record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.record-item:last-child {
+    border-bottom: none;
+}
+
+
+.record-item .label {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+
+.record-item .value {
+    color: #111827;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 3px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .pet-details-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .right-column {
+        position: static;
+    }
+}
+
+
 @media (max-width: 768px) {
     .pet-details-container {
-        padding: 15px 10px; /* Reduced padding on smaller screens */
+        padding: 16px;
     }
+
 
     .image-and-details {
-        flex-direction: column; /* Stack image and details vertically */
+        flex-direction: column;
         align-items: center;
+        text-align: center;
+        gap: 24px;
     }
+
 
     .image-container {
-        margin-right: 0;
-        margin-bottom: 20px; /* Add margin between image and details */
+        width: 160px;
+        height: 160px;
     }
+
 
     .side-by-side {
-        flex-direction: column; /* Stack the side-by-side sections vertically */
+        grid-template-columns: 1fr;
     }
 
-    .scrollable-section {
-        width: 100%; /* Full width for smaller screens */
-        margin-right: 0; /* Remove right margin */
+
+    .action-buttons-container {
+        grid-template-columns: 1fr;
     }
 
-    .walking-data-container {
-        width: 100%;
-        position: relative;
-        margin-top: 20px;
+
+    .walking-data-popup {
+        padding: 16px;
     }
 }
+
 
 @media (max-width: 480px) {
     .pet-name {
-        font-size: 1.5rem; /* Smaller pet name font size */
+        font-size: 1.5rem;
     }
+
 
     .pet-breed,
     .pet-dob,
     .pet-age {
-        font-size: 1rem; /* Smaller text for breed, dob, and age */
+        font-size: 0.875rem;
     }
 
-    .pet-description {
-        font-size: 0.9rem; /* Slightly smaller description text */
+
+    .popup-content {
+        padding: 16px;
+    }
+
+
+    .action-buttons-container button {
+        padding: 8px 12px;
+        font-size: 0.8125rem;
     }
 }
+
+
