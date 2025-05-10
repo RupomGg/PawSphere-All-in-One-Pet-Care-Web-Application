@@ -4,9 +4,11 @@ const adoptionController = require('../controllers/adoptionController');
 
 const { isAdmin } = require('../middleware/authMiddleware');
 
-// POST: Request Adoption tarek
-router.post('/request-adoption/:petId', adoptionController.requestAdoption);
 
+
+
+
+// alvee
 // GET: pending pets (For staff)
 router.get('/pending-adoptions', isAdmin, adoptionController.getPendingAdoptions);
 
