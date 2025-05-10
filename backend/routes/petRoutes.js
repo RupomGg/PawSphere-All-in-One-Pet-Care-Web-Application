@@ -45,6 +45,17 @@ router.post('/add-pet', petProfileController.addpet);
 router.get('/pets', petProfileController.getAllPets); // Get all pets  
 // alvee
 router.get('/pets/:id', petProfileController.getPetById); // Get pet by ID
+// 
+
+
+
+// tarek:
+// Delete pet profile tarek
+router.delete('/delete-pet/:petId', petProfileController.deletepet);
+
+// Update existing pet details (tarek)
+router.put('/update-pet/:petId', petProfileController.updatePet);
+
 
 
 module.exports = router;

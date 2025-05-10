@@ -6,6 +6,9 @@ const { isAdmin } = require('../middleware/authMiddleware');
 
 
 
+// tarek
+// POST: Request Adoption tarek:
+router.post('/request-adoption/:petId', adoptionController.requestAdoption);
 
 
 // alvee
