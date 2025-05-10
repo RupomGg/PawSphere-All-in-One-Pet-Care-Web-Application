@@ -28,8 +28,6 @@ router.put('/edit-vet-appointment/:petId/:appointmentId', petProfileController.u
 // Delete vet appointment
 router.delete('/delete-vet-appointment/:petId/:appointmentId', petProfileController.deleteVetAppointment);
 
-
-
 // Add a health log entry to a pet rupom
 router.post('/add-health-log/:petId', petProfileController.addHealthLog);
 
@@ -37,5 +35,16 @@ router.post('/add-health-log/:petId', petProfileController.addHealthLog);
 router.get('/health-logs/:petId', petProfileController.getHealthLogs);
 // Get health log for a pet by date rupom
 router.get('/health-log/:petId/:date', petProfileController.getHealthLogByDate);
+
+
+// alvee start:
+
+// Add pet profile alvee
+router.post('/add-pet', petProfileController.addpet);
+// alvee
+router.get('/pets', petProfileController.getAllPets); // Get all pets  
+// alvee
+router.get('/pets/:id', petProfileController.getPetById); // Get pet by ID
+
 
 module.exports = router;

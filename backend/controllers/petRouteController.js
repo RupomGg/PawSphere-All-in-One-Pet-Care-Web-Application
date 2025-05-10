@@ -274,3 +274,78 @@ exports.getHealthLogByDate = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch health log', error: err });
     }
 }
+
+
+// alvee:
+
+exports.addpet= async (req, res) => {
+    try {
+        const { name, dob, breed, image, description, owner } = req.body;
+        
+  
+        const newPet = new PetProfile({ name, dob, breed, image, description, owner });
+        const savedPet = await newPet.save();
+        console.log('o',savedPet); // Log the saved pet details
+  
+        // Update user's petIds array
+        await User.findByIdAndUpdate(owner, { $push: { petIds: savedPet._id } });
+  
+        await createNotification(owner, `a new pet ${savedPet.name} added.`);
+  
+        res.status(201).json({ message: 'Pet profile created', pet: savedPet });
+    } catch (error) {
+        console.error('Error creating pet profile:', error);
+        res.status(500).json({ error: 'Failed to create pet profile' });
+    }
+  }
+  
+  
+  
+ //alvee
+exports.getAllPets = async (req, res) => {
+    if (!req.session.userId || req.session.role !== 'user') {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    try {
+        const pets = await PetProfile.find({ owner: req.session.userId });
+
+        // Calculate and format age for each pet
+        const formattedPets = pets.map(pet => {
+            const birthDate = new Date(pet.dob);
+            const today = new Date();
+            let years = today.getFullYear() - birthDate.getFullYear();
+            let months = today.getMonth() - birthDate.getMonth();
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            const formattedAge = years > 0 ? `${years} years ${months} months` : `${months} months`;
+            return { ...pet.toObject(), age: formattedAge };
+        });
+
+        res.status(200).json(formattedPets);
+    } catch (err) {
+        console.error('Error fetching pets:', err);
+        res.status(500).json({ message: 'Failed to load pets' });
+    }
+}
+
+exports.getPetById = async (req, res) => {
+    try {
+        console.log(`Fetching pet with ID: ${req.params.id}`); // Log the pet ID
+        const pet = await PetProfile.findById(req.params.id).populate('owner', 'name email');
+        if (!pet) {
+            console.error(`Pet not found for ID: ${req.params.id}`); // Log if pet not found
+            return res.status(404).json({ message: 'Pet not found' });
+        }
+        console.log(`Pet found:`, pet); // Log the pet details
+        res.json(pet);
+    } catch (err) {
+        console.error(`Error fetching pet with ID: ${req.params.id}`, err); // Log the error
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
+
+
