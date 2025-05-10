@@ -15,8 +15,8 @@ const Home = () => {
                 `}
             </style>
 
-            <div className="min-h-screen hero relative" style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
-                <div className="absolute top-10 left-10 text-left flex flex-col items-start space-y-5">
+            <div className="relative min-h-screen hero" style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
+                <div className="absolute flex flex-col items-start space-y-5 text-left top-10 left-10">
                     <div className="max-w-md">
                         {/* Title with white text color, increased opacity and shadow */}
                         <h1 className="mb-5 text-5xl font-bold text-white opacity-100 text-shadow-md">
@@ -29,7 +29,7 @@ const Home = () => {
                     </div>
                     {/* Get Started Button */}
                     <button 
-                        className="btn bg-gradient-to-r from-purple-600 to-blue-500 text-white border-none rounded-lg py-3 px-8 text-lg font-semibold opacity-90 hover:bg-opacity-80 hover:shadow-xl transition-all duration-300"
+                        className="px-8 py-3 text-lg font-semibold text-white transition-all duration-300 border-none rounded-lg btn bg-gradient-to-r from-purple-600 to-blue-500 opacity-90 hover:bg-opacity-80 hover:shadow-xl"
                         onClick={() => navigate('/login')}
                     >
                         Get Started
