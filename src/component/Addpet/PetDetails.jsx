@@ -412,8 +412,34 @@ const PetDetails = () => {
 
                             
 
-                            
+                            {/* alvee */}
+                            <button
+                        onClick={async () => {
+                            try {
+                                const res = await fetch(`http://localhost:3000/report-lost/${id}`, {
+                                    method: 'POST',
+                                    credentials: 'include',
+                                });
+                                const data = await res.json();
+                                if (res.ok) {
+                                    alert(data.message);
+                                    setIsLost(true); // Update lost status - by rupom 5-10-2025
+                                    navigate('/lostorfound'); // Redirect to lost pets page
+                                } else {
+                                    alert(data.message || 'Failed to report pet as lost');
+                                }
+                            } catch (err) {
+                                console.error('Error reporting lost pet:', err);
+                                alert('Failed to report pet as lost');
+                            }
+                        }}
+                        className="w-full px-4 py-2 text-sm font-semibold text-center text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-700 hover:scale-105"
+                        style={{ display: isLost ? 'none' : 'block' }} //lost stausthandling  change by rupom -5-10-25 */}
 
+                    >
+                        Lost
+                    </button>
+                    {/* alvee end */}
                             <button
                                 onClick={async () => {
                                     if (window.confirm('Are you sure you want to remove this pet?')) {
