@@ -51,6 +51,7 @@ const Nav = () => {
                     Pets
                 </NavLink>
             </li>
+            
 
             {/* Logout */}
             <li>
@@ -123,6 +124,12 @@ const Nav = () => {
                             </NavLink>
                             <NavLink to="/notification" className="px-4 py-2 text-sm text-orange-600 transition-all duration-300 border-2 border-orange-600 rounded-md shadow-lg hover:bg-orange-600 hover:text-white">
                             <IoIosNotifications />
+                            </NavLink>
+                            <NavLink to="/adoption" className="px-4 py-2 text-sm text-orange-600 transition-all duration-300 border-2 border-orange-600 rounded-md shadow-lg hover:bg-orange-600 hover:text-white">
+                            Adoption_List
+                            </NavLink>
+                            <NavLink to="/lostorfound" className="px-4 py-2 text-sm text-orange-600 transition-all duration-300 border-2 border-orange-600 rounded-md shadow-lg hover:bg-orange-600 hover:text-white">
+                            Lost or found
                             </NavLink>
                             <button onClick={handleLogout} className="px-4 py-2 text-sm text-white transition-all duration-300 bg-red-500 rounded-md shadow-lg hover:bg-red-600">
                                 Logout
