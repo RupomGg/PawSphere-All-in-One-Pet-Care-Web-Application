@@ -349,3 +349,79 @@ exports.getPetById = async (req, res) => {
 
 
 
+// tarek
+
+// tarek
+exports. deletepet= async (req, res) => {
+    try {
+        const { petId } = req.params;
+
+        // Remove the pet from the PetProfile collection
+        const pet = await PetProfile.findByIdAndDelete(petId);
+        if (!pet) {
+            return res.status(404).json({ error: 'Pet not found' });
+        }
+
+        // Remove the pet ID from the petIds array in the User schema
+        await User.updateMany(
+            { petIds: petId },
+            { $pull: { petIds: petId } }
+        );
+
+        // rupom - delete pet logic from adoption - alvee extend part
+        // Remove all adoption requests for this pet
+        await AdoptionRequest.deleteMany({ petId });
+
+        await createNotification(pet.owner, ` ${pet.name} removed.`);
+
+        res.status(200).json({ message: 'Pet profile deleted', pet });
+    } catch (error) {
+        console.error('Error deleting pet profile:', error);
+        res.status(500).json({ error: 'Failed to delete pet profile' });
+    }
+}
+
+
+
+
+// tarek
+exports.updatePet = async (req, res) => {
+    const petId = req.params.petId;
+    const { name, dob, breed, description, image, vetAppointments } = req.body;
+  
+    try {
+        const pet = await PetProfile.findById(petId);
+        if (!pet) return res.status(404).json({ message: 'Pet not found' });
+  
+        pet.name = name || pet.name;
+        pet.dob = dob || pet.dob;
+        pet.breed = breed || pet.breed;
+        pet.description = description || pet.description;
+        pet.image = image || pet.image;
+  
+        if (vetAppointments) {
+            vetAppointments.forEach((appointment) => {
+                const existingAppointment = pet.vetAppointments.find(
+                    (a) => a._id && a._id.toString() === appointment._id
+                );
+                if (existingAppointment) {
+                    existingAppointment.doctorName = appointment.doctorName;
+                    existingAppointment.address = appointment.address;
+                    existingAppointment.dateOfAppointment = appointment.dateOfAppointment;
+                } else {
+                    pet.vetAppointments.push(appointment);
+                }
+            });
+        }
+  
+        const updatedPet = await pet.save();
+        await createNotification(pet.owner, `${pet.name}'s profile updated.`);
+  
+        res.status(200).json({ message: 'Pet profile updated', pet: updatedPet });
+    } catch (err) {
+        console.error('Error updating pet profile:', err);
+        res.status(500).json({ message: 'Failed to update pet profile', error: err });
+    }
+  }
+
+
