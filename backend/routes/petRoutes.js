@@ -57,5 +57,11 @@ router.delete('/delete-pet/:petId', petProfileController.deletepet);
 router.put('/update-pet/:petId', petProfileController.updatePet);
 
 
+// naimur
+// Update walking data for a pet -Naimur
+router.post('/update-walking-data/:petId', petProfileController.updatewalkingData);
+// Reset walking data for a pet - Naimur
+router.post('/reset-walking-data/:petId', petProfileController.resetWalkingData);
+
 
 module.exports = router;

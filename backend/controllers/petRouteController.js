@@ -425,3 +425,48 @@ exports.updatePet = async (req, res) => {
   }
 
 
+// naimur
+// naimur
+exports.updatewalkingData = async (req, res) => {
+    const { petId } = req.params;
+    const { walkedHours, walkedDistance } = req.body;
+
+    try {
+        const pet = await PetProfile.findById(petId);
+        if (!pet) return res.status(404).json({ message: 'Pet not found' });
+      
+        pet.totalWalkedHours = (pet.totalWalkedHours || 0) + walkedHours;
+        pet.totalWalkedDistance = (pet.totalWalkedDistance || 0) + walkedDistance;
+     
+        pet.avgWalkedHours = pet.totalWalkedHours > 0 ? pet.totalWalkedHours / pet.totalWalkedDistance : 0;
+        pet.avgWalkedDistance = pet.totalWalkedDistance > 0 ? pet.totalWalkedDistance / pet.totalWalkedHours : 0;
+
+        const updatedPet = await pet.save();
+        res.status(200).json({ message: 'Walking data updated successfully', pet: updatedPet });
+    } catch (err) {
+        console.error('Error updating walking data:', err);
+        res.status(500).json({ message: 'Failed to update walking data', error: err });
+    }
+}
+
+exports.resetWalkingData = async (req, res) => {
+    const { petId } = req.params;
+
+    try {
+        const pet = await PetProfile.findById(petId);
+        if (!pet) return res.status(404).json({ message: 'Pet not found' });
+
+        // Reset walking data
+        pet.totalWalkedHours = 0;
+        pet.avgWalkedHours = 0;
+        pet.totalWalkedDistance = 0;
+        pet.avgWalkedDistance = 0;
+
+        const updatedPet = await pet.save();
+        res.status(200).json({ message: 'Walking data reset successfully', pet: updatedPet });
+    } catch (err) {
+        console.error('Error resetting walking data:', err);
+        res.status(500).json({ message: 'Failed to reset walking data', error: err });
+    }
+}
+
