@@ -30,6 +30,15 @@ console.log(pets,14);
                             <h3 className="text-xl font-semibold text-gray-800">{pet?.name}</h3>
                             <p className="text-gray-600">{pet?.breed}</p>
                             <p className="mt-2 text-sm text-gray-500">{pet?.description}</p>
+                            <div className="p-4 mt-4 rounded-lg bg-gray-50">
+                                <h4 className="font-semibold text-gray-700">Contact Information</h4>
+                                <p className="text-sm text-gray-600">Owner: {pet?.owner?.name}</p>
+                                <p className="text-sm text-gray-600">Email: {pet?.owner?.email}</p>
+                                {pet?.owner?.phone && (
+                                    <p className="text-sm text-gray-600">Phone: {pet?.owner?.phone}</p>
+                                )}
+                                 {/* Owner Information-new change by rupom  */}
+                            </div>
                             <div>
                             {/* <button className="absolute px-6 py-2 text-lg font-semibold text-white transition-colors duration-300 transform -translate-x-1/2 bg-indigo-600 rounded-full bottom-4 left-1/2 hover:bg-indigo-700 m">
                                 Adopt
