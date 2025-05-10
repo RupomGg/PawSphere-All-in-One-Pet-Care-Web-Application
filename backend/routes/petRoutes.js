@@ -4,12 +4,6 @@ const petProfileController = require('../controllers/petRouteController');
  // Ensure this file exists and is correctly implemented
 
 
-
-
-
-
-
-
 // Add vaccination details to existing pet profile (Rupom)
 router.post('/add-vaccination/:petId', petProfileController.addvaccination)
 
