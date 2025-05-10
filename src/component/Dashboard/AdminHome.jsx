@@ -45,7 +45,7 @@ const AdminHome = () => {
         }
     };
 // alvee start
-    
+   
 
     if (loading) {
         return <div className="text-center text-gray-600">Loading pending adoption requests...</div>;
@@ -118,8 +118,8 @@ const AdminHome = () => {
                     </div>
                 </div>
 
-                {/* alvee start Pending Requests Section */}
-                
+                {/*alvee start Pending Requests Section */}
+               
             </div>
         </div>
     );
