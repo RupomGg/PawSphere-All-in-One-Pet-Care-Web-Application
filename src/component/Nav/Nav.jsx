@@ -82,7 +82,11 @@ const Nav = () => {
                         onClick={(e) => {
                             e.preventDefault();
                             if (user) {
-                                navigate('/user-home');
+                                if (userInfo?.role === 'admin') {
+                                    navigate('/admin-home');
+                                } else {
+                                    navigate('/user-home');
+                                }
                             } else {
                                 navigate('/');
                             }
@@ -119,9 +123,16 @@ const Nav = () => {
                             <NavLink to="/userprofile" className="px-4 py-2 text-sm text-orange-600 transition-all duration-300 border-2 border-orange-600 rounded-md shadow-lg hover:bg-orange-600 hover:text-white">
                                 Profile
                             </NavLink>
-                            <NavLink to="/pets" className="px-4 py-2 text-sm text-orange-600 transition-all duration-300 border-2 border-orange-600 rounded-md shadow-lg hover:bg-orange-600 hover:text-white">
-                                Pets
-                            </NavLink>
+                            {userInfo?.role !== 'admin' && (
+                                <NavLink to="/pets" className="px-4 py-2 text-sm text-orange-600 transition-all duration-300 border-2 border-orange-600 rounded-md shadow-lg hover:bg-orange-600 hover:text-white">
+                                    Pets
+                                </NavLink>
+                            )}
+                            {userInfo?.role === 'admin' && (
+                                <NavLink to="/users" className="px-4 py-2 text-sm text-orange-600 transition-all duration-300 border-2 border-orange-600 rounded-md shadow-lg hover:bg-orange-600 hover:text-white">
+                                    Users
+                                </NavLink>
+                            )}
                             <NavLink to="/notification" className="px-4 py-2 text-sm text-orange-600 transition-all duration-300 border-2 border-orange-600 rounded-md shadow-lg hover:bg-orange-600 hover:text-white">
                             <IoIosNotifications />
                             </NavLink>
@@ -156,7 +167,12 @@ const Nav = () => {
                             {user && (
                                 <>
                                     <li><NavLink to="/userprofile">Profile</NavLink></li>
-                                    <li><NavLink to="/pets">Pets</NavLink></li>
+                                    {userInfo?.role !== 'admin' && (
+                                        <li><NavLink to="/pets">Pets</NavLink></li>
+                                    )}
+                                    {userInfo?.role === 'admin' && (
+                                        <li><NavLink to="/users">Users</NavLink></li>
+                                    )}
                                     <li><button onClick={handleLogout}>Logout</button></li>
                                 </>
                             )}
@@ -169,3 +185,4 @@ const Nav = () => {
 };
 
 export default Nav;
+

@@ -33,6 +33,8 @@ import Notification from './component/Notification/Notification.jsx';
 import Adoption from './component/Adoption/Adoption.jsx';
 import LostOrfound from './component/LostOrFound/LostOrfound.jsx';
 import Reviews from './component/Reviews/Reviews'; //rupom
+// naimur
+import Users from './component/Users/Users.jsx';
 
 
 
@@ -70,6 +72,10 @@ const router = createBrowserRouter([
       { path: "/lostorfound", element: <LostOrfound></LostOrfound> },
       // alvee end
       { path: "/reviews", element: <Reviews /> }, //rupom
+      // naimur
+      { path: "/users", element: <Users></Users> },
+
+
 
 
 

@@ -62,6 +62,7 @@ const fetchPendingRequests = async () => {
         setLoading(false);
     }
 };
+// tarek
 const fetchRequests = async () => {
     try {
         const response = await fetch('http://localhost:3000/request', {
@@ -76,7 +77,7 @@ const fetchRequests = async () => {
         setLoading(false);
     }
 };
-
+// alvee
 const handleReviewRequest = async (requestId, action) => {
     setProcessingRequest(requestId);
     try {
@@ -111,7 +112,7 @@ const handleReviewRequest = async (requestId, action) => {
 };
 
 
-// new
+// tarek
 const handleRequest = async (requestId, action) => {
     setProcessingRequest(requestId);
     try {
