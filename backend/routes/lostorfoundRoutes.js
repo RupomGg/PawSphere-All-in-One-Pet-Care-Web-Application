@@ -13,6 +13,9 @@ router.get('/lost-pets', LostOrFound.getLostPets);
 // Mark a pet as found
 router.post('/mark-found/:reportId', LostOrFound.markPetAsFound);
 
+router.post('/reports/:reportId/comments', LostOrFound.addcomment);
+router.get('/reports/:reportId/comments', LostOrFound.getcomment);
+
 
 
 

@@ -104,3 +104,70 @@ exports.markPetAsFound = async (req, res) => {
         res.status(500).json({ message: 'Failed to mark pet as found' });
     }
 }
+
+
+
+// Added by tarek - Comment routes for lost/found pet posts
+
+    exports.addcomment= async (req, res) => {
+    try {
+        const { reportId } = req.params;
+        const { text } = req.body;
+        const userId = req.session.userId;
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        const report = await LostOrFound.findById(reportId);
+        if (!report) {
+            return res.status(404).json({ message: 'Report not found' });
+        }
+
+        // Add the comment
+        report.comments.push({
+            user: userId,
+            text
+        });
+
+        await report.save();
+
+        // Create notification for the report owner
+        if (report.requestedBy.toString() !== userId) {
+            const commenter = await User.findById(userId);
+            // await createNotification(
+            //     report.requestedBy,
+            //     ${commenter.name} commented on your lost pet report
+            // );
+        }
+
+        res.status(201).json({ message: 'Comment added successfully', report });
+    } catch (error) {
+        console.error('Error adding comment:', error);
+        res.status(500).json({ message: 'Failed to add comment' });
+    }
+};
+
+// Added by tarek - Get comments for a lost/found pet report
+ 
+    exports.getcomment=async (req, res) => {
+    try {
+        const { reportId } = req.params;
+
+        const report = await LostOrFound.findById(reportId)
+            .populate({
+                path: 'comments.user',
+                select: 'name email profilePicture'
+            });
+
+        if (!report) {
+            return res.status(404).json({ message: 'Report not found' });
+        }
+
+        res.status(200).json(report.comments);
+    } catch (error) {
+        console.error('Error fetching comments:', error);
+        res.status(500).json({ message: 'Failed to fetch comments' });
+    }
+}
+
