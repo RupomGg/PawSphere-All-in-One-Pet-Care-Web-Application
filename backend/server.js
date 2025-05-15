@@ -71,6 +71,10 @@ app.use('/', lostorfoundRoutes);
 
 app.use('/', require('./routes/profileRoutes'));
 // app.use('/api/user', require('./routes/profileRoutes'));
+// tarek start
+const newAdoptedRoutes = require('./routes/newAdoptedRoutes');
+app.use('/', newAdoptedRoutes);    
+// tarek end
 
 app.use('/api/reviews', require('./routes/reviewRoutes')); //rupom
 

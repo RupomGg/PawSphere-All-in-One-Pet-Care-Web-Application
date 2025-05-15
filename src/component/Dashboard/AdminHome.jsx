@@ -4,6 +4,7 @@ import '../Designe/AdminHome.css';
 
 const AdminHome = () => {
     const [pendingRequests, setPendingRequests] = useState([]);
+    const [Requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [processingRequest, setProcessingRequest] = useState(null);
@@ -21,6 +22,7 @@ const AdminHome = () => {
     useEffect(() => {
         fetchStats();
         fetchPendingRequests();
+        fetchRequests();
     }, []);
 
     const fetchStats = async () => {
@@ -53,6 +55,20 @@ const fetchPendingRequests = async () => {
         });
         const data = await response.json();
         setPendingRequests(data);
+        setLoading(false);
+    } catch (err) {
+        console.error('Failed to fetch pending adoption requests:', err);
+        setError('Failed to load pending requests');
+        setLoading(false);
+    }
+};
+const fetchRequests = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/request', {
+            credentials: 'include',
+        });
+        const data = await response.json();
+        setRequests(data);
         setLoading(false);
     } catch (err) {
         console.error('Failed to fetch pending adoption requests:', err);
@@ -93,6 +109,41 @@ const handleReviewRequest = async (requestId, action) => {
         alert('An error occurred while reviewing the request');
     }
 };
+
+
+// new
+const handleRequest = async (requestId, action) => {
+    setProcessingRequest(requestId);
+    try {
+        console.log('Request ID:', requestId);
+        const response = await fetch(`http://localhost:3000/request/${requestId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+            credentials: 'include',
+            body: JSON.stringify({
+                status: action === 'approve' ? 'approved' : 'rejected',
+            }),
+            
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert(`Request ${action}d successfully!`);
+            // Update the list of pending requests
+            setRequests((prevState) =>
+                prevState.filter((request) => request._id !== requestId)
+            );
+        } else {
+            alert(data.message || 'Failed to review the request');
+        }
+    } catch (err) {
+        console.error('Error reviewing the adoption request:', err);
+        alert('An error occurred while reviewing the request');
+    }
+}
    
 
     if (loading) {
@@ -217,6 +268,77 @@ const handleReviewRequest = async (requestId, action) => {
                                         <div className="flex justify-around mt-4">
                                 <button
                                     onClick={() => handleReviewRequest(request._id, 'approve')}
+                                    className="px-4 py-2 text-white transition bg-green-500 rounded-lg hover:bg-green-700"
+                                >
+                                    {/* {request._id} */}
+                                    Approve
+                                </button>
+                                <button
+                                    onClick={() => handleReviewRequest(request._id, 'reject')}
+                                    className="px-4 py-2 text-white transition bg-red-500 rounded-lg hover:bg-red-700"
+                                >
+                                    Reject
+                                </button>
+                            </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+
+                {/* adoption */}
+                <div className="requests-section">
+                    <div className="requests-header">
+                        <h2 className="requests-title">Adoption Requests</h2>
+                        <span className="text-sm text-gray-500">
+                            {Requests.length} pending requests
+                        </span>
+                    </div>
+
+                    {Requests.length === 0 ? (
+                        <div className="empty-state">
+                            <div className="empty-icon">
+                                <FaCheck className="w-full h-full" />
+                            </div>
+                            <p className="empty-text">No pending adoption requests at the moment.</p>
+                        </div>
+                    ) : (
+                        <div className="requests-grid">
+                            {Requests.map((request, index) => (
+                                <div key={index} className="request-card">
+                                    <div className="request-image-container">
+                                        {request.petId && request.petId.image ? (
+                                            <img
+                                                src={request.petId.image}
+                                                alt={request.petId.name || 'Pet image'}
+                                                className="request-image"
+                                            />
+                                        ) : (
+                                            <div className="flex items-center justify-center bg-gray-100 request-image">
+                                                <span className="text-gray-400">No image available</span>
+                                            </div>
+                                        )}
+                                        <div className="request-number">
+                                            Request #{index + 1}
+                                        </div>
+                                    </div>
+
+                                    <div className="request-content">
+                                        <h3 className="request-title">
+                                            {request.petId?.name || 'Unknown Pet'}
+                                        </h3>
+                                        <p className="request-breed">
+                                            {request.petId?.breed || 'Breed not specified'}
+                                        </p>
+                                        <p className="request-description">
+                                            {request.petId?.description || 'No description available'}
+                                        </p>
+
+                                        <div className="flex justify-around mt-4">
+                                <button
+                                    onClick={() => handleRequest(request._id, 'approve')}
                                     className="px-4 py-2 text-white transition bg-green-500 rounded-lg hover:bg-green-700"
                                 >
                                     {/* {request._id} */}
