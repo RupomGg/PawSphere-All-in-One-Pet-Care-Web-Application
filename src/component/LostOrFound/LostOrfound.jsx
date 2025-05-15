@@ -140,6 +140,10 @@ const CommentModal = ({ isOpen, onClose, comments, reportId, onAddComment }) => 
     );
 };
 
+// tarek end
+
+// alvee start
+
 const LostOrFound = () => {
     const [lostPets, setLostPets] = useState([]);
     const [comments, setComments] = useState({});
@@ -289,6 +293,9 @@ const LostOrFound = () => {
                     );
                 })}
             </div>
+            {/* alveeend */}
+
+            {/* tarek start */}
 
             <CommentModal 
                 isOpen={isModalOpen}
