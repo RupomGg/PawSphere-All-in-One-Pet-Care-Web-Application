@@ -1,5 +1,5 @@
 import { Children, StrictMode } from 'react'
-import { createRoot,ReactDOM } from 'react-dom/client'
+import { createRoot, ReactDOM } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import {
@@ -32,6 +32,8 @@ import EditPetProfile from './component/Edit Pet Profile/editPetProfile.jsx';
 import Notification from './component/Notification/Notification.jsx';
 import Adoption from './component/Adoption/Adoption.jsx';
 import LostOrfound from './component/LostOrFound/LostOrfound.jsx';
+import Reviews from './component/Reviews/Reviews'; //rupom
+
 
 
 const router = createBrowserRouter([
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root></Root>,
     children: [
-      { path: "/", element: <Home></Home>},
+      { path: "/", element: <Home></Home> },
       { path: "/register", element: <Register></Register> },
       { path: "/login", element: <Login></Login> },
       // { path: "/projectlist", element: <Projectlist></Projectlist>, 
@@ -57,17 +59,19 @@ const router = createBrowserRouter([
         path: '/edit-pet/:id',
         element: <EditPetProfile />
 
-     },
-    //  alvee
+      },
+      //  alvee
       {
         path: '/notification',
         element: <Notification></Notification>
 
-     },
-     { path: "/adoption", element: <Adoption></Adoption>},
-      { path: "/lostorfound", element: <LostOrfound></LostOrfound>},
+      },
+      { path: "/adoption", element: <Adoption></Adoption> },
+      { path: "/lostorfound", element: <LostOrfound></LostOrfound> },
       // alvee end
-      
+      { path: "/reviews", element: <Reviews /> }, //rupom
+
+
 
 
 
@@ -104,15 +108,15 @@ const router = createBrowserRouter([
       // },
     ],
   },
-  
+
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Authprovider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </Authprovider>
-    
+
   </StrictMode>,
 )
 
