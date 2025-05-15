@@ -110,10 +110,10 @@ const UserHome = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 w-full flex justify-center items-center">
+            <div className="flex items-center justify-center w-full min-h-screen p-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
                 <div className="flex flex-col items-center gap-2">
-                    <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                    <div className="text-blue-600 text-lg font-medium">Loading...</div>
+                    <div className="w-12 h-12 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+                    <div className="text-lg font-medium text-blue-600">Loading...</div>
                 </div>
             </div>
         );
@@ -121,10 +121,10 @@ const UserHome = () => {
 
     if (error) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 w-full flex justify-center items-center">
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-xl max-w-md w-full text-center">
-                    <div className="text-red-500 text-4xl mb-2">⚠️</div>
-                    <div className="text-red-600 text-lg font-medium mb-1">Oops! Something went wrong</div>
+            <div className="flex items-center justify-center w-full min-h-screen p-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+                <div className="w-full max-w-md p-6 text-center shadow-xl bg-white/80 backdrop-blur-md rounded-xl">
+                    <div className="mb-2 text-4xl text-red-500">⚠️</div>
+                    <div className="mb-1 text-lg font-medium text-red-600">Oops! Something went wrong</div>
                     <div className="text-gray-600">{error}</div>
                 </div>
             </div>
@@ -132,13 +132,13 @@ const UserHome = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 w-full">
-            <div className="max-w-7xl mx-auto">
+        <div className="w-full min-h-screen p-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+            <div className="mx-auto max-w-7xl">
                 {/* Welcome Back User positioned top right */}
                 <div className="flex justify-end mb-4">
-                    <div className="bg-white/80 backdrop-blur-md rounded-xl p-3 shadow-lg transform transition-all duration-300 hover:scale-105">
-                        <p className="text-blue-600 text-base font-bold flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
+                    <div className="p-3 transition-all duration-300 transform shadow-lg bg-white/80 backdrop-blur-md rounded-xl hover:scale-105">
+                        <p className="flex items-center gap-2 text-base font-bold text-blue-600">
+                            <div className="flex items-center justify-center w-8 h-8 text-sm text-white rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
                                 {userInfo?.name?.charAt(0).toUpperCase()}
                             </div>
                             <span>Welcome Back, {userInfo?.name}!</span>
@@ -147,15 +147,15 @@ const UserHome = () => {
                 </div>
 
                 {/* Pet Dashboard */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-1 gap-4 mb-4 lg:grid-cols-3">
                     {/* Pet Count Card */}
-                    <div className="bg-white/80 backdrop-blur-md rounded-xl p-4 shadow-lg transform transition-all duration-300 hover:scale-105 relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative p-4 overflow-hidden transition-all duration-300 transform shadow-lg bg-white/80 backdrop-blur-md rounded-xl hover:scale-105 group">
+                        <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 group-hover:opacity-100"></div>
                         <div className="relative z-10">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <h3 className="text-base font-semibold text-gray-800 mb-1">Total Pets</h3>
-                                    <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                    <h3 className="mb-1 text-base font-semibold text-gray-800">Total Pets</h3>
+                                    <p className="text-3xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
                                         {petData.totalPets}
                                     </p>
                                 </div>
@@ -165,16 +165,16 @@ const UserHome = () => {
                     </div>
 
                     {/* Add Pet Profile Card */}
-                    <div className="bg-white/80 backdrop-blur-md rounded-xl p-4 shadow-lg transform transition-all duration-300 hover:scale-105 relative overflow-hidden group lg:col-span-2">
-                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative p-4 overflow-hidden transition-all duration-300 transform shadow-lg bg-white/80 backdrop-blur-md rounded-xl hover:scale-105 group lg:col-span-2">
+                        <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 group-hover:opacity-100"></div>
                         <div className="relative z-10 flex flex-col items-center text-center">
-                            <h2 className="text-lg font-bold text-gray-800 mb-2">Add New Pet</h2>
-                            <p className="text-gray-600 text-sm mb-3">
+                            <h2 className="mb-2 text-lg font-bold text-gray-800">Add New Pet</h2>
+                            <p className="mb-3 text-sm text-gray-600">
                                 Because every journey begins with a story — start yours by sharing your pet's.
                             </p>
                             <button
                                 onClick={() => navigate('/addpet')}
-                                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700"
+                                className="px-6 py-2 font-semibold text-white transition-all duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-xl hover:scale-105 hover:from-blue-700 hover:to-purple-700"
                             >
                                 Add Pet
                             </button>
@@ -183,12 +183,12 @@ const UserHome = () => {
                 </div>
 
                 {/* Upcoming Events Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 mb-4 lg:grid-cols-2">
                     {/* Upcoming Vaccinations Card */}
-                    <div className="bg-white/80 backdrop-blur-md rounded-xl p-4 shadow-lg">
-                        <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="p-4 shadow-lg bg-white/80 backdrop-blur-md rounded-xl">
+                        <h3 className="flex items-center gap-2 mb-3 text-lg font-bold text-gray-800">
+                            <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
@@ -197,44 +197,44 @@ const UserHome = () => {
                         <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                             {petData.upcomingVaccinations.length > 0 ? (
                                 petData.upcomingVaccinations.map((vaccination, index) => (
-                                    <div key={index} className="bg-gradient-to-r from-blue-50 to-blue-100/50 p-3 rounded-lg border border-blue-100 transform transition-all duration-300 hover:scale-105 hover:shadow-md">
-                                        <div className="flex justify-between items-start">
+                                    <div key={index} className="p-3 transition-all duration-300 transform border border-blue-100 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 hover:scale-105 hover:shadow-md">
+                                        <div className="flex items-start justify-between">
                                             <div>
-                                                <h4 className="font-semibold text-blue-800 text-sm mb-1">{vaccination.vaccineName}</h4>
+                                                <h4 className="mb-1 text-sm font-semibold text-blue-800">{vaccination.vaccineName}</h4>
                                                 <div className="space-y-0.5">
-                                                    <p className="text-xs text-blue-600 flex items-center gap-1">
+                                                    <p className="flex items-center gap-1 text-xs text-blue-600">
                                                         <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
                                                         Pet: {vaccination.petName}
                                                     </p>
-                                                    <p className="text-xs text-blue-600 flex items-center gap-1">
+                                                    <p className="flex items-center gap-1 text-xs text-blue-600">
                                                         <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
                                                         Date: {(vaccination.nextVaccinationDate || vaccination.date).toLocaleDateString()}
                                                     </p>
                                                 </div>
                                             </div>
                                             <div className="text-right">
-                                                <p className="text-xs text-blue-600 font-medium">Next: {(vaccination.nextVaccinationDate || vaccination.date).toLocaleDateString()}</p>
+                                                <p className="text-xs font-medium text-blue-600">Next: {(vaccination.nextVaccinationDate || vaccination.date).toLocaleDateString()}</p>
                                             </div>
                                         </div>
                                         {vaccination.notes && (
-                                            <p className="mt-2 text-xs text-gray-600 bg-white/50 p-2 rounded">{vaccination.notes}</p>
+                                            <p className="p-2 mt-2 text-xs text-gray-600 rounded bg-white/50">{vaccination.notes}</p>
                                         )}
                                     </div>
                                 ))
                             ) : (
-                                <div className="text-center py-4">
-                                    <div className="text-2xl mb-2">💉</div>
-                                    <p className="text-gray-500 text-sm">No upcoming vaccinations scheduled</p>
+                                <div className="py-4 text-center">
+                                    <div className="mb-2 text-2xl">💉</div>
+                                    <p className="text-sm text-gray-500">No upcoming vaccinations scheduled</p>
                                 </div>
                             )}
                         </div>
                     </div>
 
                     {/* Upcoming Vet Appointments Card */}
-                    <div className="bg-white/80 backdrop-blur-md rounded-xl p-4 shadow-lg">
-                        <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="p-4 shadow-lg bg-white/80 backdrop-blur-md rounded-xl">
+                        <h3 className="flex items-center gap-2 mb-3 text-lg font-bold text-gray-800">
+                            <div className="flex items-center justify-center w-8 h-8 bg-purple-100 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
                             </div>
@@ -243,16 +243,16 @@ const UserHome = () => {
                         <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                             {petData.upcomingAppointments.length > 0 ? (
                                 petData.upcomingAppointments.map((appointment, index) => (
-                                    <div key={index} className="bg-gradient-to-r from-purple-50 to-purple-100/50 p-3 rounded-lg border border-purple-100 transform transition-all duration-300 hover:scale-105 hover:shadow-md">
-                                        <div className="flex justify-between items-start">
+                                    <div key={index} className="p-3 transition-all duration-300 transform border border-purple-100 rounded-lg bg-gradient-to-r from-purple-50 to-purple-100/50 hover:scale-105 hover:shadow-md">
+                                        <div className="flex items-start justify-between">
                                             <div>
-                                                <h4 className="font-semibold text-purple-800 text-sm mb-1">Dr. {appointment.doctorName}</h4>
+                                                <h4 className="mb-1 text-sm font-semibold text-purple-800">Dr. {appointment.doctorName}</h4>
                                                 <div className="space-y-0.5">
-                                                    <p className="text-xs text-purple-600 flex items-center gap-1">
+                                                    <p className="flex items-center gap-1 text-xs text-purple-600">
                                                         <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
                                                         Pet: {appointment.petName}
                                                     </p>
-                                                    <p className="text-xs text-purple-600 flex items-center gap-1">
+                                                    <p className="flex items-center gap-1 text-xs text-purple-600">
                                                         <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
                                                         Date: {appointment.dateOfAppointment.toLocaleDateString()}
                                                     </p>
@@ -260,22 +260,38 @@ const UserHome = () => {
                                             </div>
                                             {appointment.address && (
                                                 <div className="text-right">
-                                                    <p className="text-xs text-purple-600 font-medium">{appointment.address}</p>
+                                                    <p className="text-xs font-medium text-purple-600">{appointment.address}</p>
                                                 </div>
                                             )}
                                         </div>
                                         {appointment.notes && (
-                                            <p className="mt-2 text-xs text-gray-600 bg-white/50 p-2 rounded">{appointment.notes}</p>
+                                            <p className="p-2 mt-2 text-xs text-gray-600 rounded bg-white/50">{appointment.notes}</p>
                                         )}
                                     </div>
                                 ))
                             ) : (
-                                <div className="text-center py-4">
-                                    <div className="text-2xl mb-2">🏥</div>
-                                    <p className="text-gray-500 text-sm">No upcoming appointments scheduled</p>
+                                <div className="py-4 text-center">
+                                    <div className="mb-2 text-2xl">🏥</div>
+                                    <p className="text-sm text-gray-500">No upcoming appointments scheduled</p>
                                 </div>
                             )}
                         </div>
+                    </div>
+                </div>
+
+                {/* Reviews Button Section */}
+                <div className="p-4 transition-all duration-300 transform shadow-lg bg-white/80 backdrop-blur-md rounded-xl hover:scale-105"> 
+                    <div className="flex flex-col items-center text-center">
+                        <h2 className="mb-2 text-lg font-bold text-gray-800">Pet Reviews</h2>
+                        <p className="mb-3 text-sm text-gray-600">
+                            Read and share experiences with other pet owners
+                        </p>
+                        <button
+                            onClick={() => navigate('/reviews')}
+                            className="px-6 py-2 font-semibold text-white transition-all duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-xl hover:scale-105 hover:from-blue-700 hover:to-purple-700"
+                        >
+                            View Reviews
+                        </button>
                     </div>
                 </div>
             </div>

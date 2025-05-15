@@ -71,6 +71,9 @@ app.use('/', lostorfoundRoutes);
 
 app.use('/', require('./routes/profileRoutes'));
 // app.use('/api/user', require('./routes/profileRoutes'));
+
+app.use('/api/reviews', require('./routes/reviewRoutes')); //rupom
+
 app.use('/', require('./routes/dashboardRoutes'));
 app.use((req, res, next) => {
     if (req.session.userId) {
@@ -81,6 +84,7 @@ app.use((req, res, next) => {
 
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/admin', adminRoutes);
+
 
 // Start Server
 const PORT = process.env.PORT || 3000;
